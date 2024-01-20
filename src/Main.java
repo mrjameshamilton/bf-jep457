@@ -17,7 +17,10 @@ import java.util.jar.Manifest;
 import static java.lang.classfile.ClassFile.ACC_PUBLIC;
 import static java.lang.classfile.ClassFile.ACC_STATIC;
 import static java.lang.classfile.ClassFile.JAVA_6_VERSION;
-import static java.lang.constant.MethodTypeDesc.ofDescriptor;
+import static java.lang.constant.ConstantDescs.CD_byte;
+import static java.lang.constant.ConstantDescs.CD_char;
+import static java.lang.constant.ConstantDescs.CD_int;
+import static java.lang.constant.ConstantDescs.CD_void;
 import static java.util.jar.Attributes.Name.MAIN_CLASS;
 import static java.util.jar.Attributes.Name.MANIFEST_VERSION;
 
@@ -34,7 +37,8 @@ public static void main(String[] args) throws IOException {
     var bytes = ClassFile.of()
         .build(ClassDesc.of("BF"), classBuilder -> classBuilder
             .withVersion(JAVA_6_VERSION, 0)
-            .withMethodBody("main", ofDescriptor("([Ljava/lang/String;)V"), ACC_PUBLIC | ACC_STATIC, codeBuilder -> {
+            .withMethodBody("main", MethodTypeDesc.of(CD_void, ClassDesc.of("java.lang.String").arrayType()), ACC_PUBLIC | ACC_STATIC, codeBuilder -> {
+
                 // Initialize memory.
                 codeBuilder
                     .sipush(30_000)
@@ -114,7 +118,7 @@ private static void printChar(CodeBuilder codeBuilder) {
         .iload(DATA_POINTER)
         .baload()
         .i2c()
-        .invokevirtual(ClassDesc.of("java.io.PrintStream"), "print", MethodTypeDesc.ofDescriptor("(C)V"));
+        .invokevirtual(ClassDesc.of("java.io.PrintStream"), "print", MethodTypeDesc.of(CD_void, CD_char));
 }
 
 /**
@@ -127,7 +131,7 @@ private static void readChar(CodeBuilder codeBuilder) {
         .aload(MEMORY)
         .iload(DATA_POINTER)
         .iconst_1()
-        .invokevirtual(ClassDesc.of("java.io.InputStream"), "read", MethodTypeDesc.ofDescriptor("([BII)I"))
+        .invokevirtual(ClassDesc.of("java.io.InputStream"), "read", MethodTypeDesc.of(CD_int, CD_byte.arrayType(), CD_int, CD_int))
         .pop();
 }
 
