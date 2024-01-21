@@ -17,16 +17,19 @@ sdk install java 22.ea.31-open
 You can then compile the `Main` class with `--release 22` and `--enable-preview` flags:
 
 ```shell
-$ javac --release 22 --enable-preview src/Main.java -d build
+$ javac --release 22 --enable-preview src/BfCompiler.java -d build
 ```
 
 # Run
 
 Compile a Brainf*ck program by passing the input file path and the output jar path
-to the compiler:
+to the compiler.
+
+You can run the BfCompiler class directly from source with the `--source 22`
+parameter:
 
 ```shell
-$ java --enable-preview -cp build Main examples/hellojvm.bf build/out.jar
+$ java --enable-preview --source 22 src/BfCompiler.java examples/hellojvm.bf build/out.jar
 ```
 
 The compiled jar can then be executed:
