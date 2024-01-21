@@ -25,8 +25,8 @@ $ javac --release 22 --enable-preview src/BfCompiler.java -d build
 Compile a Brainf*ck program by passing the input file path and the output jar path
 to the compiler.
 
-You can run the BfCompiler class directly from source with the `--source 22`
-parameter:
+You can execute the compiled class, or simply run `BfCompiler.java` 
+directly from source with the `--source 22` parameter:
 
 ```shell
 $ java --enable-preview --source 22 src/BfCompiler.java examples/hellojvm.bf build/out.jar
