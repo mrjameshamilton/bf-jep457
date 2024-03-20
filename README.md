@@ -7,11 +7,10 @@ The compiler is simple and does no optimizations. For an optimizing compiler [se
 
 # Building
 
-You'll need JDK 22 which is currently available as an early access version.
-The easiest way to install this, on Linux, is with [SDK man](https://sdkman.io/):
+You'll need JDK 22. The easiest way to install this, on Linux, is with [SDK man](https://sdkman.io/):
 
 ```shell
-sdk install java 22.ea.31-open
+sdk install java 22-open
 ```
 
 You can then compile the `Main` class with `--release 22` and `--enable-preview` flags:
