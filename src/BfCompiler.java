@@ -103,7 +103,7 @@ private static void increment(CodeBuilder codeBuilder, int amount) {
         .iload(DATA_POINTER)
         .dup2()
         .baload()
-        .constantInstruction(amount)
+        .loadConstant(amount)
         .iadd()
         .bastore();
 }
